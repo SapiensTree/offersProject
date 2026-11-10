@@ -1,0 +1,31 @@
+/* REBAJAS DE INVIERNO: Acento azul hielo y cian ártico sobre la base */
+:root[data-theme="rebajas-invierno"],
+[data-theme="rebajas-invierno"],
+.theme-rebajas-invierno {
+  --border-subtle: rgba(56, 189, 248, 0.22);
+  --border-focus: rgba(56, 189, 248, 0.55);
+
+  --primary: #38bdf8;
+  --primary-glow: rgba(56, 189, 248, 0.35);
+  --accent: #22d3ee;
+  --accent-glow: rgba(34, 211, 238, 0.3);
+
+  --primary-contrast: #082f49;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(56, 189, 248, 0.15);
+  --badge-text: #bae6fd;
+  --badge-border: rgba(56, 189, 248, 0.35);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.25),
+    rgba(34, 211, 238, 0.15)
+  );
+
+  --theme-deco-1: "❄️";
+  --theme-deco-2: "⛷️";
+  --theme-deco-3: "🧣";
+  --banner-icon: "❄️";
+  --card-deco: "❄️";
+}

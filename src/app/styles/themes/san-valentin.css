@@ -1,0 +1,31 @@
+/* SAN VALENTÍN: Acento rosa carmín y rubí sobre la base */
+:root[data-theme="san-valentin"],
+[data-theme="san-valentin"],
+.theme-san-valentin {
+  --border-subtle: rgba(244, 63, 94, 0.22);
+  --border-focus: rgba(244, 63, 94, 0.55);
+
+  --primary: #f43f5e;
+  --primary-glow: rgba(244, 63, 94, 0.35);
+  --accent: #fb7185;
+  --accent-glow: rgba(251, 113, 133, 0.3);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(244, 63, 94, 0.15);
+  --badge-text: #fecdd3;
+  --badge-border: rgba(244, 63, 94, 0.35);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(244, 63, 94, 0.3),
+    rgba(251, 113, 133, 0.15)
+  );
+
+  --theme-deco-1: "💖";
+  --theme-deco-2: "💌";
+  --theme-deco-3: "🌹";
+  --banner-icon: "💖";
+  --card-deco: "💖";
+}

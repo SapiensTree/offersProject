@@ -1,0 +1,27 @@
+/* VERANO: Acento turquesa marino y coral sobre la base */
+:root[data-theme="verano"],
+[data-theme="verano"],
+.theme-verano {
+  --border-subtle: rgba(20, 184, 166, 0.22);
+  --border-focus: rgba(249, 115, 22, 0.5);
+
+  --primary: #0d9488;
+  --primary-glow: rgba(13, 148, 136, 0.35);
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.3);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(13, 148, 136, 0.15);
+  --badge-text: #5eead4;
+  --badge-border: rgba(13, 148, 136, 0.35);
+
+  --banner-gradient: linear-gradient(135deg, rgba(13, 148, 136, 0.3), rgba(249, 115, 22, 0.2));
+
+  --theme-deco-1: "☀️";
+  --theme-deco-2: "🏖️";
+  --theme-deco-3: "🍉";
+  --banner-icon: "☀️";
+  --card-deco: "☀️";
+}

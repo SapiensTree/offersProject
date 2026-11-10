@@ -1,0 +1,31 @@
+/* NAVIDAD: Acento púrpura real y dorado cálido sobre la base */
+:root[data-theme="navidad"],
+[data-theme="navidad"],
+.theme-navidad {
+  --border-subtle: rgba(168, 85, 247, 0.22);
+  --border-focus: rgba(234, 179, 8, 0.5);
+
+  --primary: #9333ea;
+  --primary-glow: rgba(147, 51, 234, 0.35);
+  --accent: #fbbf24;
+  --accent-glow: rgba(251, 191, 36, 0.3);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(251, 191, 36, 0.15);
+  --badge-text: #fde68a;
+  --badge-border: rgba(251, 191, 36, 0.3);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.3),
+    rgba(251, 191, 36, 0.2)
+  );
+
+  --theme-deco-1: "🎄";
+  --theme-deco-2: "⛄";
+  --theme-deco-3: "🎁";
+  --banner-icon: "🎄";
+  --card-deco: "🎄";
+}

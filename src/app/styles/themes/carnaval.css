@@ -1,0 +1,31 @@
+/* CARNAVAL: Acento magenta y lima neón sobre la base */
+:root[data-theme="carnaval"],
+[data-theme="carnaval"],
+.theme-carnaval {
+  --border-subtle: rgba(217, 70, 239, 0.25);
+  --border-focus: rgba(234, 179, 8, 0.5);
+
+  --primary: #d946ef;
+  --primary-glow: rgba(217, 70, 239, 0.4);
+  --accent: #84cc16;
+  --accent-glow: rgba(132, 204, 22, 0.3);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(217, 70, 239, 0.15);
+  --badge-text: #f5d0fe;
+  --badge-border: rgba(217, 70, 239, 0.35);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(217, 70, 239, 0.3),
+    rgba(132, 204, 22, 0.2)
+  );
+
+  --theme-deco-1: "🎭";
+  --theme-deco-2: "🪅";
+  --theme-deco-3: "🎪";
+  --banner-icon: "🎭";
+  --card-deco: "🎭";
+}

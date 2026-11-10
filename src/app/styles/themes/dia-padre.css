@@ -1,0 +1,27 @@
+/* DÍA DEL PADRE: Acento azul cobalto y ámbar sobre la base */
+:root[data-theme="dia-padre"],
+[data-theme="dia-padre"],
+.theme-dia-padre {
+  --border-subtle: rgba(14, 165, 233, 0.2);
+  --border-focus: rgba(14, 165, 233, 0.5);
+
+  --primary: #0284c7;
+  --primary-glow: rgba(2, 132, 199, 0.3);
+  --accent: #f59e0b;
+  --accent-glow: rgba(245, 158, 11, 0.25);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(14, 165, 233, 0.15);
+  --badge-text: #7dd3fc;
+  --badge-border: rgba(14, 165, 233, 0.3);
+
+  --banner-gradient: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(245, 158, 11, 0.15));
+
+  --theme-deco-1: "👔";
+  --theme-deco-2: "🛠️";
+  --theme-deco-3: "🧢";
+  --banner-icon: "👔";
+  --card-deco: "👔";
+}

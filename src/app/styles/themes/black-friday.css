@@ -1,0 +1,31 @@
+/* BLACK FRIDAY: Acento oro mate y brillo de alta gama sobre la base */
+:root[data-theme="black-friday"],
+[data-theme="black-friday"],
+.theme-black-friday {
+  --border-subtle: rgba(234, 179, 8, 0.2);
+  --border-focus: rgba(234, 179, 8, 0.55);
+
+  --primary: #eab308;
+  --primary-glow: rgba(234, 179, 8, 0.35);
+  --accent: #facc15;
+  --accent-glow: rgba(250, 204, 21, 0.25);
+
+  --primary-contrast: #09090b;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(234, 179, 8, 0.15);
+  --badge-text: #fde047;
+  --badge-border: rgba(234, 179, 8, 0.35);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(234, 179, 8, 0.25),
+    rgba(250, 204, 21, 0.1)
+  );
+
+  --theme-deco-1: "🛍️";
+  --theme-deco-2: "💰";
+  --theme-deco-3: "🖤";
+  --banner-icon: "🛍️";
+  --card-deco: "🛍️";
+}

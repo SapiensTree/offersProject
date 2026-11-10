@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "stores": "Tiendas",
+    "categories": "Categorias",
+    "offers": "Ofertas",
+    "mostVoted": "Mas Votadas",
+    "wallet": "Monedero",
+    "login": "Iniciar Sesion",
+    "coupons": "Cupones",
+    "search": "Buscar...",
+    "new": "Nuevos",
+    "forum": "Foro"
+  }
+}

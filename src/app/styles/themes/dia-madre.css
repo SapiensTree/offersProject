@@ -1,0 +1,31 @@
+/* DÍA DE LA MADRE: Acento rosa floral y melocotón sobre la base */
+:root[data-theme="dia-madre"],
+[data-theme="dia-madre"],
+.theme-dia-madre {
+  --border-subtle: rgba(244, 114, 182, 0.22);
+  --border-focus: rgba(251, 146, 60, 0.5);
+
+  --primary: #ec4899;
+  --primary-glow: rgba(236, 72, 153, 0.32);
+  --accent: #fb923c;
+  --accent-glow: rgba(251, 146, 60, 0.25);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(236, 72, 153, 0.15);
+  --badge-text: #fbcfe8;
+  --badge-border: rgba(236, 72, 153, 0.35);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.25),
+    rgba(251, 146, 60, 0.2)
+  );
+
+  --theme-deco-1: "🌸";
+  --theme-deco-2: "💐";
+  --theme-deco-3: "🎀";
+  --banner-icon: "🌸";
+  --card-deco: "🌸";
+}

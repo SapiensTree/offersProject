@@ -1,0 +1,31 @@
+/* SEMANA SANTA: Acento morado cofrade y oro antiguo sobre la base */
+:root[data-theme="semana-santa"],
+[data-theme="semana-santa"],
+.theme-semana-santa {
+  --border-subtle: rgba(126, 34, 206, 0.24);
+  --border-focus: rgba(217, 119, 6, 0.5);
+
+  --primary: #7e22ce;
+  --primary-glow: rgba(126, 34, 206, 0.35);
+  --accent: #d97706;
+  --accent-glow: rgba(217, 119, 6, 0.25);
+
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+
+  --badge-bg: rgba(217, 119, 6, 0.15);
+  --badge-text: #fde68a;
+  --badge-border: rgba(217, 119, 6, 0.3);
+
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(126, 34, 206, 0.3),
+    rgba(217, 119, 6, 0.15)
+  );
+
+  --theme-deco-1: "🕊️";
+  --theme-deco-2: "🌿";
+  --theme-deco-3: "🏵️";
+  --banner-icon: "🕊️";
+  --card-deco: "🕊️";
+}

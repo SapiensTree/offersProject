@@ -1,0 +1,43 @@
+@use "./colors" as *;
+@use "./variables" as *;
+
+@mixin glass-effect {
+  background: $glass-effect-bg;
+  backdrop-filter: blur($size-10);
+  -webkit-backdrop-filter: blur($size-10);
+  border: $size-1 $solid $glass-border;
+  border-radius: $border-r-big;
+  box-shadow: $size-0 $size-8 $size-30 rgba(0, 0, 0, 0.1);
+}
+
+@mixin transition($property: opacity, $time: 1.5s, $type: ease) {
+  transition:
+    $property $time $type,
+    visibility $time $type;
+}
+
+@mixin glass-effect-nav {
+  background: $glass-effect-bg;
+  backdrop-filter: blur($size-10);
+  -webkit-backdrop-filter: blur($size-10);
+  border: $size-1 $solid $glass-border;
+  box-shadow: $size-0 $size-8 $size-30 rgba(0, 0, 0, 0.1);
+}
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 577px) and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}

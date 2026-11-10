@@ -1,0 +1,1775 @@
+@import "tailwindcss";
+
+/* 1. Importación modular de todos los temas festivos */
+
+@import "./styles/themes/navidad.css";
+@import "./styles/themes/reyes.css";
+@import "./styles/themes/rebajas-invierno.css";
+@import "./styles/themes/san-valentin.css";
+@import "./styles/themes/carnaval.css";
+@import "./styles/themes/semana-santa.css";
+@import "./styles/themes/dia-padre.css";
+@import "./styles/themes/dia-madre.css";
+@import "./styles/themes/verano.css";
+@import "./styles/themes/halloween.css";
+@import "./styles/themes/black-friday.css";
+@import "./styles/themes/cyber-monday.css";
+
+/* 2. Tema base por defecto (diseño principal: estilo Cyber Monday) */
+:root,
+[data-theme="default"] {
+  --bg-main: #020617;
+  --bg-surface: #091124;
+  --bg-surface-elevated: #0f1c3a;
+  --border-subtle: rgba(148, 163, 184, 0.14);
+  --border-focus: rgba(6, 182, 212, 0.55);
+  --text-main: #f0fdfa;
+  --text-muted: #94a3b8;
+  --primary: #06b6d4;
+  --primary-glow: rgba(6, 182, 212, 0.35);
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.3);
+  --primary-contrast: #ffffff;
+  --modal-overlay: rgba(2, 6, 23, 0.8);
+  --badge-bg: rgba(6, 182, 212, 0.15);
+  --badge-text: #a5f3fc;
+  --badge-border: rgba(6, 182, 212, 0.35);
+  --banner-gradient: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.25),
+    rgba(59, 130, 246, 0.2)
+  );
+
+  /* Decoración característica de cada campaña (por defecto vacía) */
+  --theme-deco-1: "";
+  --theme-deco-2: "";
+  --theme-deco-3: "";
+  --banner-icon: "";
+  --card-deco: "";
+
+  /* Aliases de conveniencia */
+  --bg-page: var(--bg-main);
+  --bg-card: var(--bg-surface);
+  --border-color: var(--border-subtle);
+  --accent-badge: var(--badge-bg);
+  --accent-text: var(--badge-text);
+}
+
+/* 3. Base del body con transición suave entre festivos */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-contrast);
+}
+
+/* ==========================================================================
+   SISTEMA DE CONTENEDORES Y COMPONENTES AMOLDABLES
+   ========================================================================== */
+
+/* Fondo ambiental dinámico */
+.bg-ambient-glow {
+  background-image:
+    radial-gradient(circle at 50% 0%, var(--primary-glow), transparent 45%),
+    radial-gradient(circle at 10% 20%, var(--accent-glow), transparent 35%);
+  background-repeat: no-repeat;
+}
+
+/* Contenedor / Tarjeta polivalente */
+.card-theme {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-theme:hover {
+  background-color: var(--bg-surface-elevated);
+  border-color: var(--border-focus);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px -10px var(--primary-glow);
+}
+
+.card-theme::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.7;
+}
+
+/* Banner destacado para cabeceras o promociones */
+.banner-theme {
+  background: var(--banner-gradient);
+  border: 1px solid var(--border-focus);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px -10px var(--primary-glow);
+}
+
+/* Botón principal */
+.btn-primary-theme {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--primary-contrast);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--primary-glow);
+  transition: all 0.2s ease;
+}
+
+.btn-primary-theme:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--primary-glow);
+}
+
+.btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 0.6rem;
+}
+
+/* Botón secundario (outline) */
+.btn-secondary-theme {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-focus);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary-theme:hover {
+  background-color: var(--bg-surface-elevated);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Insignias / Tags */
+.badge-theme {
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--badge-border);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Entradas de formulario (Inputs) */
+.input-theme {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-theme:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Textos secundarios */
+.text-muted-theme {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   DECORACIÓN CARACTERÍSTICA DE CADA CAMPAÑA
+   ========================================================================== */
+
+/* Adornos flotantes de fondo (solo aparecen si la campaña los define) */
+.theme-decorations {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.theme-decorations span {
+  position: absolute;
+  line-height: 1;
+  opacity: 0.16;
+  filter: drop-shadow(0 0 14px var(--primary-glow));
+  animation: deco-float 7s ease-in-out infinite;
+}
+
+.theme-decorations span::before {
+  content: var(--theme-deco-1);
+}
+
+.theme-decorations span:nth-child(2)::before {
+  content: var(--theme-deco-2);
+}
+
+.theme-decorations span:nth-child(3)::before {
+  content: var(--theme-deco-3);
+}
+
+.theme-decorations span:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  font-size: 3rem;
+  animation-delay: 0s;
+}
+
+.theme-decorations span:nth-child(2) {
+  top: 22%;
+  right: 7%;
+  font-size: 2rem;
+  animation-delay: 2s;
+}
+
+.theme-decorations span:nth-child(3) {
+  bottom: 14%;
+  left: 10%;
+  font-size: 2.4rem;
+  animation-delay: 4s;
+}
+
+@keyframes deco-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(4deg);
+  }
+}
+
+/* Icono característico en el banner de la campaña */
+.banner-theme {
+  position: relative;
+}
+
+.banner-theme::after {
+  content: var(--banner-icon);
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  line-height: 1;
+  opacity: 0.2;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px var(--primary-glow));
+}
+
+/* Marca de agua temática en cada tarjeta de oferta */
+.deal-row::after {
+  content: var(--card-deco);
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  font-size: 1.3rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN
+   ========================================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: color-mix(in srgb, var(--bg-main) 82%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.nav-logo {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.nav-logo-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.nav-campaign {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 9999px;
+  padding: 0.3rem 0.8rem;
+  white-space: nowrap;
+}
+
+.nav-campaign-idle {
+  color: var(--text-muted);
+  background-color: var(--bg-surface);
+  border-color: var(--border-subtle);
+}
+
+.navbar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+  background-color: var(--bg-surface-elevated);
+}
+
+.navbar-search {
+  flex: 1 1 auto;
+  min-width: 9rem;
+  display: flex;
+}
+
+.navbar-search-input {
+  width: 100%;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 0.6rem;
+}
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.nav-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-user-dot {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 0 8px var(--primary-glow);
+}
+
+@media (max-width: 720px) {
+  .navbar-row {
+    gap: 0.75rem;
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-search {
+    order: 4;
+    flex-basis: 100%;
+  }
+}
+
+/* Capa de adornos dentro de la navbar */
+.nav-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.nav-deco span {
+  position: absolute;
+  top: -1.5rem;
+  left: calc(var(--i, 0) * 5%);
+  display: none;
+  line-height: 1;
+  font-size: 0.85rem;
+  will-change: transform, opacity;
+}
+
+/* Decoraciones por campaña */
+
+/* NAVIDAD / REYES: luces de navidad + nieve cayendo */
+[data-theme="navidad"] .navbar::before,
+[data-theme="reyes"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 8px 7px, #f87171 0 3px, transparent 3.5px),
+    radial-gradient(circle at 32px 7px, #facc15 0 3px, transparent 3.5px),
+    radial-gradient(circle at 56px 7px, #4ade80 0 3px, transparent 3.5px),
+    radial-gradient(circle at 80px 7px, #60a5fa 0 3px, transparent 3.5px),
+    radial-gradient(circle at 104px 7px, #f472b6 0 3px, transparent 3.5px);
+  background-size: 128px 10px;
+  background-repeat: repeat-x;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45));
+  animation: nav-lights 2.5s ease-in-out infinite;
+}
+
+[data-theme="navidad"] .nav-deco span,
+[data-theme="reyes"] .nav-deco span {
+  display: block;
+  animation: nav-snow 4.5s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.3s);
+}
+
+[data-theme="navidad"] .nav-deco span::before,
+[data-theme="reyes"] .nav-deco span::before {
+  content: "❄";
+}
+
+[data-theme="navidad"] .nav-deco span:nth-child(3n)::before,
+[data-theme="reyes"] .nav-deco span:nth-child(3n)::before {
+  content: "✦";
+}
+
+[data-theme="reyes"] .navbar::before {
+  background-image:
+    radial-gradient(circle at 8px 7px, #fde047 0 3px, transparent 3.5px),
+    radial-gradient(circle at 32px 7px, #f8fafc 0 3px, transparent 3.5px),
+    radial-gradient(circle at 56px 7px, #38bdf8 0 3px, transparent 3.5px),
+    radial-gradient(circle at 80px 7px, #fbbf24 0 3px, transparent 3.5px),
+    radial-gradient(circle at 104px 7px, #e2e8f0 0 3px, transparent 3.5px);
+}
+
+/* REBAJAS DE INVIERNO: nieve fina y línea helada */
+[data-theme="rebajas-invierno"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="rebajas-invierno"] .nav-deco span {
+  display: block;
+  animation: nav-snow 3.6s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.25s);
+}
+
+[data-theme="rebajas-invierno"] .nav-deco span::before {
+  content: "❄";
+}
+
+/* SAN VALENTÍN: corazones flotando */
+[data-theme="san-valentin"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="san-valentin"] .nav-deco span {
+  display: block;
+  animation: nav-rise 4s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.4s);
+}
+
+[data-theme="san-valentin"] .nav-deco span::before {
+  content: "💖";
+}
+
+[data-theme="san-valentin"] .nav-deco span:nth-child(3n)::before {
+  content: "💘";
+}
+
+[data-theme="san-valentin"] .nav-deco span:nth-child(5n)::before {
+  content: "💕";
+}
+
+/* CARNAVAL: confeti cayendo */
+[data-theme="carnaval"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #d946ef,
+    #84cc16,
+    #facc15,
+    #22d3ee,
+    #f472b6,
+    #84cc16,
+    #facc15,
+    #d946ef
+  );
+}
+
+[data-theme="carnaval"] .nav-deco span {
+  display: block;
+  animation: nav-confetti 3s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.2s);
+}
+
+[data-theme="carnaval"] .nav-deco span::before {
+  content: "🎉";
+}
+
+[data-theme="carnaval"] .nav-deco span:nth-child(3n)::before {
+  content: "🎊";
+}
+
+[data-theme="carnaval"] .nav-deco span:nth-child(5n)::before {
+  content: "🪅";
+}
+
+/* SEMANA SANTA: palomas y destellos suaves */
+[data-theme="semana-santa"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="semana-santa"] .nav-deco span {
+  display: block;
+  animation: nav-drift 6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.5s);
+}
+
+[data-theme="semana-santa"] .nav-deco span::before {
+  content: "🕊";
+  opacity: 0.55;
+}
+
+[data-theme="semana-santa"] .nav-deco span:nth-child(4n)::before {
+  content: "🏵️";
+}
+
+/* DÍA DE LA MADRE: flores subiendo */
+[data-theme="dia-madre"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="dia-madre"] .nav-deco span {
+  display: block;
+  animation: nav-rise 4.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.35s);
+}
+
+[data-theme="dia-madre"] .nav-deco span::before {
+  content: "🌸";
+}
+
+[data-theme="dia-madre"] .nav-deco span:nth-child(3n)::before {
+  content: "💐";
+}
+
+[data-theme="dia-madre"] .nav-deco span:nth-child(5n)::before {
+  content: "🎀";
+}
+
+/* DÍA DEL PADRE: corbatas flotando con aire sobrio */
+[data-theme="dia-padre"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="dia-padre"] .nav-deco span {
+  display: block;
+  animation: nav-drift 7s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.6s);
+}
+
+[data-theme="dia-padre"] .nav-deco span::before {
+  content: "👔";
+  opacity: 0.3;
+}
+
+[data-theme="dia-padre"] .nav-deco span:nth-child(4n)::before {
+  content: "✶";
+}
+
+/* VERANO: sol, palmeras y destellos */
+[data-theme="verano"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #fbbf24, var(--primary), transparent);
+}
+
+[data-theme="verano"] .nav-deco span {
+  display: block;
+  animation: nav-twinkle 3s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.3s);
+}
+
+[data-theme="verano"] .nav-deco span::before {
+  content: "✨";
+}
+
+[data-theme="verano"] .nav-deco span:nth-child(3n)::before {
+  content: "☀️";
+}
+
+[data-theme="verano"] .nav-deco span:nth-child(5n)::before {
+  content: "🌴";
+}
+
+/* HALLOWEEN: murciélagos cruzando */
+[data-theme="halloween"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="halloween"] .nav-deco span {
+  display: block;
+  left: 0;
+  animation: nav-fly 6s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.5s);
+}
+
+[data-theme="halloween"] .nav-deco span::before {
+  content: "🦇";
+}
+
+[data-theme="halloween"] .nav-deco span:nth-child(3n)::before {
+  content: "🕸️";
+}
+
+[data-theme="halloween"] .nav-deco span:nth-child(5n)::before {
+  content: "🎃";
+}
+
+/* BLACK FRIDAY: destellos dorados cayendo */
+[data-theme="black-friday"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #facc15, #eab308, transparent);
+}
+
+[data-theme="black-friday"] .nav-deco span {
+  display: block;
+  animation: nav-snow 3.2s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.25s);
+}
+
+[data-theme="black-friday"] .nav-deco span::before {
+  content: "✨";
+}
+
+[data-theme="black-friday"] .nav-deco span:nth-child(3n)::before {
+  content: "🪙";
+}
+
+/* CYBER MONDAY: lluvia digital */
+[data-theme="cyber-monday"] .navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+}
+
+[data-theme="cyber-monday"] .nav-deco span {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  animation: nav-rain 2.4s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.2s);
+}
+
+[data-theme="cyber-monday"] .nav-deco span::before {
+  content: "1";
+  color: #22d3ee;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.9);
+}
+
+[data-theme="cyber-monday"] .nav-deco span:nth-child(even)::before {
+  content: "0";
+  color: #4ade80;
+  text-shadow: 0 0 8px rgba(74, 222, 128, 0.9);
+}
+
+/* Animaciones de la navbar */
+
+@keyframes nav-lights {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-snow {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(14px, 5.5rem, 0) rotate(120deg);
+    opacity: 0;
+  }
+}
+
+@keyframes nav-rise {
+  0% {
+    transform: translateY(5rem) scale(0.7);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-1rem) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes nav-confetti {
+  0% {
+    transform: translate3d(0, -1rem, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(calc(var(--i, 0) * -0.5rem), 5.5rem, 0) rotate(300deg);
+    opacity: 0;
+  }
+}
+
+@keyframes nav-drift {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(1.2rem) translateY(-0.5rem);
+    opacity: 0.65;
+  }
+}
+
+@keyframes nav-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes nav-fly {
+  0% {
+    transform: translateX(-2rem) translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  55% {
+    transform: translateX(50vw) translateY(-0.5rem);
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(110vw) translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes nav-rain {
+  0% {
+    transform: translateY(-1.5rem);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(5.5rem);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   HERO (ESTILO HOSTINGER)
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(ellipse 90% 65% at 50% -10%, var(--primary-glow), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 85% 35%, var(--accent-glow), transparent 70%);
+}
+
+.hero::after {
+  content: var(--banner-icon);
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12rem;
+  line-height: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-marquee {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.4rem 0;
+  background-color: color-mix(in srgb, var(--bg-surface) 70%, transparent);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-marquee-track {
+  display: inline-block;
+  animation: hero-marquee 22s linear infinite;
+}
+
+.hero-marquee-track span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 2.5rem;
+}
+
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-deco span {
+  position: absolute;
+  top: -2rem;
+  left: calc(var(--i, 0) * 4.2%);
+  display: none;
+  line-height: 1;
+  font-size: 1.4rem;
+  will-change: transform, opacity;
+}
+
+.hero-deco span::before {
+  content: var(--theme-deco-1);
+}
+
+.hero-deco span:nth-child(3n)::before {
+  content: var(--theme-deco-2);
+}
+
+.hero-deco span:nth-child(5n)::before {
+  content: var(--theme-deco-3);
+}
+
+/* Imágenes flotantes del tema (las que ponga el usuario en public/themes/<tema>/) */
+.hero-floats {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-float {
+  position: absolute;
+  width: 5rem;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.55);
+  opacity: 0.9;
+  animation: hero-float 6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -1.2s);
+}
+
+.hero-float:nth-child(1) {
+  top: 14%;
+  left: 5%;
+  width: 5.5rem;
+}
+
+.hero-float:nth-child(2) {
+  top: 20%;
+  right: 6%;
+  width: 4.2rem;
+}
+
+.hero-float:nth-child(3) {
+  bottom: 22%;
+  left: 8%;
+  width: 4.5rem;
+}
+
+.hero-float:nth-child(4) {
+  top: 50%;
+  right: 4%;
+  width: 5.2rem;
+}
+
+.hero-float:nth-child(5) {
+  bottom: 30%;
+  right: 15%;
+  width: 3.6rem;
+}
+
+.hero-float:nth-child(6) {
+  top: 34%;
+  left: 14%;
+  width: 3.8rem;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-float {
+    width: 3.4rem;
+  }
+
+  .hero-float:nth-child(1),
+  .hero-float:nth-child(4) {
+    width: 4rem;
+  }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4.5rem 1.5rem 3.5rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+}
+
+.hero-title {
+  margin: 1.1rem 0 0.8rem;
+  font-size: clamp(2.6rem, 7vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  color: var(--text-main);
+}
+
+.hero-title-line {
+  display: block;
+}
+
+.hero-title-accent {
+  display: block;
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.1em;
+}
+
+.hero-subtitle {
+  max-width: 34rem;
+  margin: 0 auto 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  margin-top: 2.25rem;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.hero-stat b {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.hero-stat span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Decoración del hero por campaña */
+
+[data-theme="navidad"] .hero-deco span,
+[data-theme="reyes"] .hero-deco span {
+  display: block;
+  animation: nav-snow 5s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.35s);
+  opacity: 0.9;
+}
+
+[data-theme="navidad"] .hero-deco span:nth-child(4n)::before,
+[data-theme="reyes"] .hero-deco span:nth-child(4n)::before {
+  content: "✦";
+}
+
+[data-theme="rebajas-invierno"] .hero-deco span {
+  display: block;
+  animation: nav-snow 4s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.3s);
+}
+
+[data-theme="san-valentin"] .hero-deco span {
+  display: block;
+  font-size: 1.6rem;
+  animation: nav-rise 5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.45s);
+}
+
+[data-theme="carnaval"] .hero-deco span {
+  display: block;
+  animation: nav-confetti 3.5s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.25s);
+}
+
+[data-theme="semana-santa"] .hero-deco span {
+  display: block;
+  animation: nav-drift 7s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.55s);
+}
+
+[data-theme="dia-madre"] .hero-deco span {
+  display: block;
+  font-size: 1.7rem;
+  animation: nav-rise 5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.4s);
+}
+
+[data-theme="dia-padre"] .hero-deco span {
+  display: block;
+  animation: nav-drift 8s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.65s);
+}
+
+[data-theme="verano"] .hero-deco span {
+  display: block;
+  font-size: 1.8rem;
+  animation: nav-twinkle 3.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.35s);
+}
+
+[data-theme="halloween"] .hero-deco span {
+  display: block;
+  left: 0;
+  animation: nav-fly 7s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.6s);
+}
+
+[data-theme="black-friday"] .hero-deco span {
+  display: block;
+  animation: nav-snow 3.6s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.3s);
+}
+
+[data-theme="cyber-monday"] .hero-deco span {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  animation: nav-rain 3s linear infinite;
+  animation-delay: calc(var(--i, 0) * -0.25s);
+}
+
+[data-theme="cyber-monday"] .hero-deco span::before {
+  content: "1";
+  color: #22d3ee;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.9);
+}
+
+[data-theme="cyber-monday"] .hero-deco span:nth-child(3n)::before,
+[data-theme="cyber-monday"] .hero-deco span:nth-child(5n)::before {
+  content: "1";
+  color: #22d3ee;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.9);
+}
+
+[data-theme="cyber-monday"] .hero-deco span:nth-child(even)::before {
+  content: "0";
+  color: #4ade80;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.9);
+}
+
+/* ==========================================================================
+   CATÁLOGO DE OFERTAS (ESTILO CHOLLOMETRO)
+   ========================================================================== */
+
+/* Filtros por categoría */
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  color: var(--text-main);
+  border-color: var(--border-focus);
+}
+
+.filter-pill.is-active {
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  border-color: var(--badge-border);
+}
+
+/* Etiqueta de categoría (se usa en filas y en el modal) */
+.category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+/* Lista de ofertas */
+.deal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Fila de oferta */
+.deal-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7rem 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.4);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+}
+
+.deal-row:hover {
+  background-color: var(--bg-surface-elevated);
+  border-color: var(--border-focus);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -12px var(--primary-glow);
+}
+
+.deal-row:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.deal-row.is-featured {
+  border-color: var(--badge-border);
+  background:
+    linear-gradient(135deg, var(--badge-bg), transparent 55%),
+    var(--bg-surface);
+}
+
+/* Bloque con el descuento */
+.deal-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--primary-contrast);
+  border-radius: 0.75rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 0.6rem 0.5rem;
+  line-height: 1.25;
+  box-shadow: 0 6px 16px -6px var(--primary-glow);
+}
+
+/* Cuerpo de la fila */
+.deal-row-body {
+  min-width: 0;
+}
+
+.deal-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.deal-row-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deal-row-tagline {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+
+.deal-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deal-row-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-subtle);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deal-row-code b {
+  color: var(--text-main);
+}
+
+.deal-row-type {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+}
+
+.deal-row-featured {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+}
+
+/* Columna con el botón */
+.deal-row-cta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.deal-row-cta .btn-primary-theme {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .deal-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .deal-ribbon {
+    justify-self: start;
+    min-height: auto;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  .deal-row-title {
+    white-space: normal;
+  }
+
+  .deal-row-cta {
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   MODAL DE DETALLE DE OFERTA
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--modal-overlay);
+  backdrop-filter: blur(6px);
+  animation: modal-fade-in 0.2s ease;
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  max-height: 88vh;
+  overflow-y: auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-focus);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+  animation: modal-pop-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--text-main);
+  border-color: var(--border-focus);
+  transform: rotate(90deg);
+}
+
+.modal-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-right: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.modal-discount {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--primary-contrast);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  padding: 0.4rem 1rem;
+  border-radius: 0.75rem;
+  margin: 0.4rem 0 1rem;
+}
+
+.modal-description {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
+}
+
+.modal-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.65rem;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+}
+
+.modal-info-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.modal-info-value {
+  color: var(--text-main);
+  font-weight: 700;
+  text-align: right;
+}
+
+.modal-code-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px dashed var(--badge-border);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.6rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-code-copy:hover {
+  border-style: solid;
+  filter: brightness(1.1);
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   MODAL DE AUTENTICACIÓN
+   ========================================================================== */
+
+.auth-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.auth-panel .modal-title {
+  padding-right: 2.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.auth-input {
+  width: 100%;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-error {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #f87171;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 0.6rem;
+}
+
+.auth-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0.25rem 0 0;
+}
+
+.auth-switch {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.auth-switch:hover {
+  text-decoration: underline;
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
