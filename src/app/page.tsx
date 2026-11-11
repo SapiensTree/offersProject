@@ -1,19 +1,22 @@
-import DealsPage from "@/componentes/DealsPage";
-import { getCatalogDealUseCase } from "@/infraestructure/container";
-import { getActiveCampaign } from "@/config/campaigns";
 import { connection } from "next/server";
 import NavbarNuevo from "@/componentes/NavbarNuevo/NavbarNuevo";
+import Hero from "@/componentes/Hero/Hero";
+import Filters from "@/componentes/Filters/Filters";
 
 export const instant = false;
 
 export default async function HomePage() {
   await connection();
 
-  const { deals, categories } = await getCatalogDealUseCase.execute();
-  const activeCampaign = getActiveCampaign(new Date());
+  //const { deals, categories } = await getCatalogDealUseCase.execute();
+  //const activeCampaign = getActiveCampaign(new Date());
 
   return (
-    <NavbarNuevo />
+    <>
+      <NavbarNuevo />
+      <Hero />
+      <Filters />
+    </>
 
     /*<div className="min-h-screen bg-[var(--bg-main)] transition-colors duration-300">
       <div className="theme-decorations" aria-hidden="true">

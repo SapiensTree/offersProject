@@ -11,5 +11,19 @@
     "search": "Pesquisar...",
     "new": "Novos",
     "forum": "Fórum"
+  },
+  "hero": {
+    "title": "Ofertas",
+    "description": "Descubra as melhores ofertas em tempo real",
+    "button-text": "Comprar Agora"
+  },
+  "filter": {
+    "all": "Todos",
+    "technology": "Tecnologia",
+    "fashion": "Moda",
+    "homeAndKitchen": "Casa e Cozinha",
+    "sports": "Esportes",
+    "beauty": "Beleza",
+    "moreCategories": "Ver mais filtros"
   }
 }

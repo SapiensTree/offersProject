@@ -11,5 +11,19 @@
     "search": "Search...",
     "new": "New",
     "forum": "Forum"
+  },
+  "hero": {
+    "title": "Offers",
+    "description": "Discover the best offers in real time",
+    "button-text": "Buy Now"
+  },
+  "filter": {
+    "all": "All",
+    "technology": "Technology",
+    "fashion": "Fashion",
+    "homeAndKitchen": "Home And Kitchen",
+    "sports": "Sports",
+    "beauty": "Beauty",
+    "moreCategories": "See more filters"
   }
 }

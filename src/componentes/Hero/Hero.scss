@@ -1,0 +1,74 @@
+.container-hero {
+  display: flex;
+  background-image: url("../../../public/Hero/fondo-hero-verano.svg");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.hero-information {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding-left: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  &__title {
+    font-size: 80px;
+    font-weight: 800;
+    text-align: left;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__description {
+    font-size: 1.5rem;
+    color: #f5dfa8;
+    margin: 0;
+    padding: 0;
+    width: 35%;
+    font-weight: 400;
+  }
+  &__button {
+    background-color: red;
+    color: white;
+    font-size: 1.5rem;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+
+    height: auto;
+    border-radius: 12px;
+    padding: 10px;
+    gap: 10px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #c32121;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.hero-products {
+  display: flex;
+  width: 100%;
+
+  &__container-products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  &__product {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+  }
+}
