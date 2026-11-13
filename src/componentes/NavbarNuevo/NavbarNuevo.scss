@@ -21,13 +21,17 @@
     margin: 0;
     padding: 0;
 
-    li {
+    a {
       margin: 10px;
       min-width: 80px;
       text-align: center;
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      text-decoration: none;
+      color: white;
+      flex-shrink: 0;
+      
 
       &:hover {
         color: #6054ff;

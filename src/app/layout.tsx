@@ -6,6 +6,7 @@ import { getThemeForDate } from "@/config/campaigns";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Deals ST",
@@ -25,7 +26,16 @@ export default async function RootLayout({
 
   return (
     <html lang="es" data-theme={theme}>
-      <body>{children}</body>
+      <body>
+        {children}
+
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8987912664801123"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }

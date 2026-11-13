@@ -3,6 +3,7 @@ import "./NavbarNuevo.scss";
 import Image from "next/image";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 export default function NavbarNuevo() {
   const { t } = useTranslation();
@@ -18,10 +19,10 @@ export default function NavbarNuevo() {
           loading="eager"
         />
         <ul className="list">
-          <li>{t("nav.home")}</li>
-          <li>{t("nav.coupons")}</li>
-          <li>{t("nav.categories")}</li>
-          <li>{t("nav.forum")}</li>
+          <Link href="/">{t("nav.home")}</Link>
+          <Link href="/coupons">{t("nav.coupons")}</Link>
+          <Link href="/category">{t("nav.categories")}</Link>
+          <Link href="/forum">{t("nav.forum")}</Link>
         </ul>
 
         <div className="search">

@@ -26,11 +26,13 @@ export default function Card({ deal }: { deal: PublicDeal | null }) {
         <div className="card__container-info">
           <h3 className="card__title">{deal?.name}</h3>
           <div className="card__container-price">
-            <p className="card__price">{deal?.priceWithDiscount}€</p>
+            <p className="card__price">{deal?.priceDiscount}€</p>
             <p className="card__price-discount">{deal?.price}€</p>
           </div>
           <p className="card__description">{deal?.description}</p>
-          <button className="card__button">Ir a la oferta</button>
+          <button className="card__button">
+            <span>Ir a la oferta</span>
+          </button>
         </div>
       </Link>
     </>
