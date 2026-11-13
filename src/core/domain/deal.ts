@@ -11,6 +11,10 @@ export interface Deal {
     discountLabel: string;
     dealType: DealType;
     targetUrl: string;
+    imageUrl?: string;
+    price: number;
+    priceDiscount: number;
+    discountPercentage: number;
     isFeatured: boolean;
     status: DealStatus;
     categorySlug: string;
